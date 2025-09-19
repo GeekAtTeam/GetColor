@@ -22,12 +22,14 @@ class ColorPicker {
         this.successText = document.getElementById('successText');
         this.colorHistory = document.getElementById('colorHistory');
         this.historyGrid = document.getElementById('historyGrid');
+        this.clearHistoryBtn = document.getElementById('clearHistoryBtn');
     }
 
     bindEvents() {
         this.pickColorBtn.addEventListener('click', () => this.pickColor());
         this.copyHexBtn.addEventListener('click', () => this.copyToClipboard('hex'));
         this.copyRgbBtn.addEventListener('click', () => this.copyToClipboard('rgb'));
+        this.clearHistoryBtn.addEventListener('click', () => this.clearHistory());
     }
 
     checkEyeDropperSupport() {
@@ -349,6 +351,13 @@ class ColorPicker {
                 this.showError('Failed to copy to clipboard');
             }
         }
+    }
+
+    clearHistory() {
+        this.colorHistoryData = [];
+        this.saveColorHistory();
+        this.renderHistory();
+        this.showSuccess('Color history cleared!');
     }
 }
 

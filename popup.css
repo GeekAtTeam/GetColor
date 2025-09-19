@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    width: 320px;
+    width: 340px;
     min-height: 400px;
     padding: 20px;
     display: flex;
@@ -90,14 +90,14 @@ body {
 
 .color-preview {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 0px;
 }
 
 .color-swatch {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     border-radius: 8px;
     border: 2px solid #dee2e6;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -111,48 +111,57 @@ body {
     gap: 4px;
 }
 
+.color-value-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0; /* 允许flex项目收缩 */
+}
+
 .color-value {
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #495057;
     background: white;
-    padding: 6px 10px;
+    padding: 2px 8px;
     border-radius: 6px;
     border: 1px solid #dee2e6;
-}
-
-/* Color Actions */
-.color-actions {
-    display: flex;
-    gap: 8px;
-}
-
-.copy-btn {
     flex: 1;
-    padding: 10px 16px;
-    background: white;
-    color: #495057;
+    min-width: 0; /* 允许文本收缩 */
+    white-space: nowrap; /* 防止文本换行 */
+    overflow: visible; /* 允许内容溢出以完全显示 */
+}
+
+/* Copy Icon Buttons */
+.copy-icon-btn {
+    background: #f8f9fa;
+    color: #6c757d;
     border: 1px solid #dee2e6;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
+    border-radius: 4px;
+    padding: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+    margin-left: 2px;
 }
 
-.copy-btn:hover {
-    background: #f8f9fa;
+.copy-icon-btn:hover {
+    background: #e9ecef;
     border-color: #adb5bd;
-    transform: translateY(-1px);
+    color: #495057;
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.copy-btn:active {
-    transform: translateY(0);
+.copy-icon-btn:active {
+    transform: scale(0.95);
 }
 
 /* Fixed Position Messages */
@@ -197,6 +206,9 @@ body {
 }
 
 .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 12px;
 }
 
@@ -205,6 +217,26 @@ body {
     font-weight: 600;
     color: #495057;
     margin: 0;
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.clear-btn:hover {
+    background: #e9ecef;
+    color: #495057;
 }
 
 .history-grid {

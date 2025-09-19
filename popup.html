@@ -34,18 +34,19 @@
                 <div class="color-preview">
                     <div id="colorSwatch" class="color-swatch"></div>
                     <div class="color-info">
-                        <div id="colorHex" class="color-value">#000000</div>
-                        <div id="colorRgb" class="color-value">rgb(0, 0, 0)</div>
+                        <div class="color-value-row">
+                            <div id="colorHex" class="color-value">#000000</div>
+                            <button id="copyHexBtn" class="copy-icon-btn" data-format="hex" title="Copy HEX">
+                                <span class="btn-icon">📋</span>
+                            </button>
+                        </div>
+                        <div class="color-value-row">
+                            <div id="colorRgb" class="color-value">rgb(0, 0, 0)</div>
+                            <button id="copyRgbBtn" class="copy-icon-btn" data-format="rgb" title="Copy RGB">
+                                <span class="btn-icon">📋</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="color-actions">
-                    <button id="copyHexBtn" class="copy-btn" data-format="hex">
-                        Copy HEX
-                    </button>
-                    <button id="copyRgbBtn" class="copy-btn" data-format="rgb">
-                        Copy RGB
-                    </button>
                 </div>
             </div>
             
@@ -53,6 +54,9 @@
             <div id="colorHistory" class="color-history hidden">
                 <div class="history-header">
                     <h3>Recent Colors</h3>
+                    <button id="clearHistoryBtn" class="clear-btn" title="Clear all history">
+                        <span class="btn-icon">🗑️</span>
+                    </button>
                 </div>
                 <div id="historyGrid" class="history-grid">
                     <!-- History color squares will be dynamically added here -->
