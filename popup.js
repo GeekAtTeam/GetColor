@@ -6,6 +6,7 @@ class ColorPicker {
         this.checkEyeDropperSupport();
         this.loadColorHistory();
         this.MAX_HISTORY_ITEMS = 10;
+        this.initializeColorDisplay();
     }
 
     initializeElements() {
@@ -37,6 +38,37 @@ class ColorPicker {
             this.showError('EyeDropper API is not supported in this browser. Please use Chrome 95+ or Edge 95+.');
             this.pickColorBtn.disabled = true;
         }
+    }
+
+    initializeColorDisplay() {
+        // Display default white color initially
+        this.displayDefaultColor();
+    }
+
+    displayDefaultColor() {
+        // Show default white color
+        this.colorSwatch.style.backgroundColor = '#FFFFFF';
+        this.colorHex.textContent = '#FFFFFF';
+        this.colorRgb.textContent = 'rgb(255, 255, 255)';
+        
+        // Store as current color
+        this.currentColor = {
+            hex: '#FFFFFF',
+            rgb: 'rgb(255, 255, 255)'
+        };
+    }
+
+    displayColorFromHistory(color) {
+        // Display color from history without adding to history again
+        this.colorSwatch.style.backgroundColor = color.hex;
+        this.colorHex.textContent = color.hex;
+        this.colorRgb.textContent = color.rgb;
+        
+        // Store as current color
+        this.currentColor = {
+            hex: color.hex,
+            rgb: color.rgb
+        };
     }
 
     async pickColor() {
@@ -123,8 +155,7 @@ class ColorPicker {
         this.colorHex.textContent = normalizedHex;
         this.colorRgb.textContent = rgbValue;
         
-        // Show result section
-        this.colorResult.classList.remove('hidden');
+        // Color result is always visible now
         
         // Store current color for copying
         this.currentColor = {
@@ -259,6 +290,12 @@ class ColorPicker {
         chrome.storage.local.get(['colorHistory'], (result) => {
             this.colorHistoryData = result.colorHistory || [];
             this.renderHistory();
+            
+            // If there's history, display the most recent color
+            if (this.colorHistoryData.length > 0) {
+                const mostRecentColor = this.colorHistoryData[0];
+                this.displayColorFromHistory(mostRecentColor);
+            }
         });
     }
 
@@ -336,9 +373,17 @@ class ColorPicker {
             const historySquare = e.target.closest('.history-square');
             if (historySquare) {
                 const index = parseInt(historySquare.dataset.index);
-                this.copyHistoryColor(index);
+                this.useHistoryColor(index);
             }
         });
+    }
+
+    useHistoryColor(index) {
+        const color = this.colorHistoryData[index];
+        if (color) {
+            this.displayColorFromHistory(color);
+            this.showSuccess('Color loaded from history!');
+        }
     }
 
     async copyHistoryColor(index) {
@@ -357,6 +402,7 @@ class ColorPicker {
         this.colorHistoryData = [];
         this.saveColorHistory();
         this.renderHistory();
+        this.displayDefaultColor(); // Show default white after clearing
         this.showSuccess('Color history cleared!');
     }
 }
