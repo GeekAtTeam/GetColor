@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "GetColor",
+  "version": "1.0.0",
+  "description": "A simple and powerful browser extension for picking colors from the screen",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GetColor - Pick a color",
+    "default_icon": {
+      "16": "icons/getcolor-icon.png",
+      "32": "icons/getcolor-icon.png",
+      "48": "icons/getcolor-icon.png",
+      "128": "icons/getcolor-icon-128px.png"
+    }
+  },
+  "icons": {
+    "16": "icons/getcolor-icon.png",
+    "32": "icons/getcolor-icon.png",
+    "48": "icons/getcolor-icon.png",
+    "128": "icons/getcolor-icon-128px.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

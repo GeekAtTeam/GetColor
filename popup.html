@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetColor</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <!-- Fixed position messages -->
+    <div id="errorMessage" class="fixed-message error-message hidden">
+        <span class="error-icon">⚠️</span>
+        <span id="errorText">Error occurred</span>
+    </div>
+    
+    <div id="successMessage" class="fixed-message success-message hidden">
+        <span class="success-icon">✅</span>
+        <span id="successText">Copied to clipboard!</span>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <img src="icons/getcolor-icon-128px.png" alt="GetColor" class="logo">
+            <h1>GetColor</h1>
+        </div>
+        
+        <div class="content">
+            <button id="pickColorBtn" class="pick-btn">
+                <span class="btn-icon">🎨</span>
+                Pick a Color
+            </button>
+            
+            <div id="colorResult" class="color-result hidden">
+                <div class="color-preview">
+                    <div id="colorSwatch" class="color-swatch"></div>
+                    <div class="color-info">
+                        <div id="colorHex" class="color-value">#000000</div>
+                        <div id="colorRgb" class="color-value">rgb(0, 0, 0)</div>
+                    </div>
+                </div>
+                
+                <div class="color-actions">
+                    <button id="copyHexBtn" class="copy-btn" data-format="hex">
+                        Copy HEX
+                    </button>
+                    <button id="copyRgbBtn" class="copy-btn" data-format="rgb">
+                        Copy RGB
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Color History Section -->
+            <div id="colorHistory" class="color-history hidden">
+                <div class="history-header">
+                    <h3>Recent Colors</h3>
+                </div>
+                <div id="historyGrid" class="history-grid">
+                    <!-- History color squares will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Click anywhere on the screen to pick a color</p>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
