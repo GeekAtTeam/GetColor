@@ -31,6 +31,15 @@ class ColorPicker {
         this.copyHexBtn.addEventListener('click', () => this.copyToClipboard('hex'));
         this.copyRgbBtn.addEventListener('click', () => this.copyToClipboard('rgb'));
         this.clearHistoryBtn.addEventListener('click', () => this.clearHistory());
+        
+        // Add click handler for history squares (using event delegation)
+        this.historyGrid.addEventListener('click', (e) => {
+            const historySquare = e.target.closest('.history-square');
+            if (historySquare) {
+                const index = parseInt(historySquare.dataset.index);
+                this.useHistoryColor(index);
+            }
+        });
     }
 
     checkEyeDropperSupport() {
@@ -423,22 +432,33 @@ class ColorPicker {
                          title="${color.hex} - Click to copy">
                     </div>`;
         }).join('');
-
-        // Add click handler for history squares
-        this.historyGrid.addEventListener('click', (e) => {
-            const historySquare = e.target.closest('.history-square');
-            if (historySquare) {
-                const index = parseInt(historySquare.dataset.index);
-                this.useHistoryColor(index);
-            }
-        });
     }
 
     useHistoryColor(index) {
         const color = this.colorHistoryData[index];
         if (color) {
+            // Move the clicked color to the front of the queue
+            this.moveColorToFront(index);
+            
+            // Display the color
             this.displayColorFromHistory(color);
             this.showSuccess('Color loaded from history!');
+        }
+    }
+
+    moveColorToFront(index) {
+        if (index >= 0 && index < this.colorHistoryData.length) {
+            // Remove the color from its current position
+            const color = this.colorHistoryData.splice(index, 1)[0];
+            
+            // Add it to the front of the array
+            this.colorHistoryData.unshift(color);
+            
+            // Save the updated history
+            this.saveColorHistory();
+            
+            // Re-render the history grid
+            this.renderHistory();
         }
     }
 
