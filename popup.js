@@ -40,10 +40,27 @@ class ColorPicker {
         }
     }
 
+
+
     initializeColorDisplay() {
-        // Display default white color initially
-        this.displayDefaultColor();
+        // Check for recently picked color
+        chrome.storage.local.get(['lastPickedColor', 'lastPickedTime'], (result) => {
+            const now = Date.now();
+            const oneMinuteAgo = now - (60 * 1000); // 1 minute ago
+            
+            if (result.lastPickedColor && result.lastPickedTime && result.lastPickedTime > oneMinuteAgo) {
+                // Show the recently picked color
+                this.displayColor(result.lastPickedColor);
+                this.showSuccess('Color picked successfully!');
+                // Clear the stored color
+                chrome.storage.local.remove(['lastPickedColor', 'lastPickedTime']);
+            } else {
+                // Display default white color
+                this.displayDefaultColor();
+            }
+        });
     }
+
 
     displayDefaultColor() {
         // Show default white color
@@ -82,13 +99,17 @@ class ColorPicker {
                 throw new Error('EyeDropper API not supported');
             }
 
+            // Move popup to edge of screen to minimize interference
+            this.movePopupToEdge();
+
             // Create EyeDropper instance
             const eyeDropper = new EyeDropper();
             
-            // Open color picker
+            // Start the color picker
             const result = await eyeDropper.open();
             
             if (result && result.sRGBHex) {
+                // Display the picked color
                 this.displayColor(result.sRGBHex);
                 this.showSuccess('Color picked successfully!');
             } else {
@@ -100,15 +121,36 @@ class ColorPicker {
             
             // Handle user cancellation gracefully
             if (error.name === 'AbortError' || error.message.includes('canceled')) {
-                // User canceled, don't show error
-                this.hideMessages();
+                this.showSuccess('Color picking canceled');
             } else {
                 this.showError(this.getErrorMessage(error));
             }
         } finally {
+            // Reset button state and popup position
             this.pickColorBtn.disabled = false;
-            this.pickColorBtn.innerHTML = '<span class="btn-icon">🎨</span>Pick a Color';
+            this.pickColorBtn.textContent = 'Pick a Color';
+            this.resetPopupPosition();
         }
+    }
+
+    movePopupToEdge() {
+        // Move popup to top-right corner to minimize interference
+        document.body.style.position = 'fixed';
+        document.body.style.top = '10px';
+        document.body.style.right = '10px';
+        document.body.style.left = 'auto';
+        document.body.style.transform = 'scale(0.8)';
+        document.body.style.zIndex = '9999';
+    }
+
+    resetPopupPosition() {
+        // Reset popup position
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.right = '';
+        document.body.style.left = '';
+        document.body.style.transform = '';
+        document.body.style.zIndex = '';
     }
 
     displayColor(colorValue) {

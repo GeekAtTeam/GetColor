@@ -5,7 +5,8 @@
   "description": "A simple and powerful browser extension for picking colors from the screen",
   "permissions": [
     "activeTab",
-    "storage"
+    "storage",
+    "notifications"
   ],
   "action": {
     "default_popup": "popup.html",
