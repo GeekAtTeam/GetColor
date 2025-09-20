@@ -3,6 +3,7 @@
   "name": "GetColor",
   "version": "1.0.0",
   "description": "A simple and powerful browser extension for picking colors from the screen",
+  "default_locale": "en",
   "permissions": [
     "activeTab",
     "storage",

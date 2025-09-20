@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GetColor</title>
     <link rel="stylesheet" href="popup.css">
+    <script src="i18n.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,7 +17,7 @@
         <div class="content">
             <button id="pickColorBtn" class="pick-btn">
                 <span class="btn-icon">🎨</span>
-                Pick a Color
+                <span data-i18n="pickColor">Pick a Color</span>
             </button>
             
             <div id="colorResult" class="color-result">
@@ -24,20 +25,20 @@
                     <div id="colorSwatch" class="color-swatch"></div>
                     <div class="color-info">
                         <div class="color-value-row">
-                            <div id="colorHex" class="color-value" title="HEX: Hexadecimal color value, commonly used in web development">#000000</div>
-                            <button id="copyHexBtn" class="copy-icon-btn" data-format="hex" title="Copy HEX">
+                            <div id="colorHex" class="color-value" data-i18n-title="colorFormatHex">#000000</div>
+                            <button id="copyHexBtn" class="copy-icon-btn" data-format="hex" data-i18n-title="copyHex">
                                 <span class="btn-icon">📋</span>
                             </button>
                         </div>
                         <div class="color-value-row">
-                            <div id="colorRgb" class="color-value" title="RGB: Red, Green, Blue values, range 0-255">rgb(0,0,0)</div>
-                            <button id="copyRgbBtn" class="copy-icon-btn" data-format="rgb" title="Copy RGB">
+                            <div id="colorRgb" class="color-value" data-i18n-title="colorFormatRgb">rgb(0,0,0)</div>
+                            <button id="copyRgbBtn" class="copy-icon-btn" data-format="rgb" data-i18n-title="copyRgb">
                                 <span class="btn-icon">📋</span>
                             </button>
                         </div>
                         <div class="color-value-row">
-                            <div id="colorHsl" class="color-value" title="HSL: Hue, Saturation, Lightness - more intuitive color representation">hsl(0,0%,0%)</div>
-                            <button id="copyHslBtn" class="copy-icon-btn" data-format="hsl" title="Copy HSL">
+                            <div id="colorHsl" class="color-value" data-i18n-title="colorFormatHsl">hsl(0,0%,0%)</div>
+                            <button id="copyHslBtn" class="copy-icon-btn" data-format="hsl" data-i18n-title="copyHsl">
                                 <span class="btn-icon">📋</span>
                             </button>
                         </div>
@@ -48,8 +49,8 @@
             <!-- Color History Section -->
             <div id="colorHistory" class="color-history hidden">
                 <div class="history-header">
-                    <h3>Recent Colors</h3>
-                    <button id="clearHistoryBtn" class="clear-btn" title="Clear all history">
+                    <h3 data-i18n="recentColors">Recent Colors</h3>
+                    <button id="clearHistoryBtn" class="clear-btn" data-i18n-title="clearHistory">
                         <span class="btn-icon">🗑️</span>
                     </button>
                 </div>
@@ -60,7 +61,7 @@
         </div>
         
         <div class="footer">
-            <p>Click anywhere on the screen to pick a color</p>
+            <p data-i18n="clickAnywhere">Click anywhere on the screen to pick a color</p>
         </div>
         
         <!-- Messages at bottom of container -->

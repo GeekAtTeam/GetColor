@@ -1,0 +1,56 @@
+{
+  "colorFormatHex": {
+    "message": "HEX: Hexadecimal color value, commonly used in web development"
+  },
+  "colorFormatRgb": {
+    "message": "RGB: Red, Green, Blue values, range 0-255"
+  },
+  "colorFormatHsl": {
+    "message": "HSL: Hue, Saturation, Lightness - more intuitive color representation"
+  },
+  "copyHex": {
+    "message": "Copy HEX"
+  },
+  "copyRgb": {
+    "message": "Copy RGB"
+  },
+  "copyHsl": {
+    "message": "Copy HSL"
+  },
+  "recentColors": {
+    "message": "Recent Colors"
+  },
+  "clearHistory": {
+    "message": "Clear all history"
+  },
+  "pickColor": {
+    "message": "Pick a Color"
+  },
+  "pickingColor": {
+    "message": "Picking..."
+  },
+  "clickAnywhere": {
+    "message": "Click anywhere on the screen to pick a color"
+  },
+  "colorPickedSuccess": {
+    "message": "Color picked successfully!"
+  },
+  "colorPickedCanceled": {
+    "message": "Color picking canceled"
+  },
+  "colorHistoryCleared": {
+    "message": "Color history cleared!"
+  },
+  "valueCopied": {
+    "message": "value copied to clipboard!"
+  },
+  "noColorSelected": {
+    "message": "No color selected"
+  },
+  "failedToCopy": {
+    "message": "Failed to copy to clipboard"
+  },
+  "eyedropperNotSupported": {
+    "message": "EyeDropper API is not supported in this browser. Please use Chrome 95+ or Edge 95+."
+  }
+}

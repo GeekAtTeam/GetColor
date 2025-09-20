@@ -6,6 +6,7 @@ class ColorPicker {
         this.checkEyeDropperSupport();
         this.MAX_HISTORY_ITEMS = 12;
         this.loadColorHistory();
+        this.initializeI18n();
     }
 
     initializeElements() {
@@ -44,9 +45,16 @@ class ColorPicker {
         });
     }
 
+    initializeI18n() {
+        // Initialize internationalization
+        if (window.i18n) {
+            window.i18n.initializeTexts();
+        }
+    }
+
     checkEyeDropperSupport() {
         if (!window.EyeDropper) {
-            this.showError('EyeDropper API is not supported in this browser. Please use Chrome 95+ or Edge 95+.');
+            this.showError(window.i18n?.getMessage('eyedropperNotSupported') || 'EyeDropper API is not supported in this browser. Please use Chrome 95+ or Edge 95+.');
             this.pickColorBtn.disabled = true;
         }
     }
@@ -95,7 +103,7 @@ class ColorPicker {
         try {
             this.hideMessages();
             this.pickColorBtn.disabled = true;
-            this.pickColorBtn.textContent = 'Picking...';
+            this.pickColorBtn.innerHTML = '<span class="btn-icon">🎨</span><span>' + (window.i18n?.getMessage('pickingColor') || 'Picking...') + '</span>';
 
             // Check if EyeDropper is available
             if (!window.EyeDropper) {
@@ -111,7 +119,7 @@ class ColorPicker {
             if (result && result.sRGBHex) {
                 // Display the picked color
                 this.displayColor(result.sRGBHex);
-                this.showSuccess('Color picked successfully!');
+                this.showSuccess(window.i18n?.getMessage('colorPickedSuccess') || 'Color picked successfully!');
             } else {
                 throw new Error('No color selected');
             }
@@ -121,14 +129,14 @@ class ColorPicker {
             
             // Handle user cancellation gracefully
             if (error.name === 'AbortError' || error.message.includes('canceled')) {
-                this.showSuccess('Color picking canceled');
+                this.showSuccess(window.i18n?.getMessage('colorPickedCanceled') || 'Color picking canceled');
             } else {
                 this.showError(this.getErrorMessage(error));
             }
         } finally {
             // Reset button state
             this.pickColorBtn.disabled = false;
-            this.pickColorBtn.textContent = 'Pick a Color';
+            this.pickColorBtn.innerHTML = '<span class="btn-icon">🎨</span><span>' + (window.i18n?.getMessage('pickColor') || 'Pick a Color') + '</span>';
         }
     }
 
@@ -311,11 +319,11 @@ class ColorPicker {
             }
             
             await navigator.clipboard.writeText(textToCopy);
-            this.showSuccess(`${format.toUpperCase()} value copied to clipboard!`);
+            this.showSuccess(`${format.toUpperCase()} ${window.i18n?.getMessage('valueCopied') || 'value copied to clipboard!'}`);
             
         } catch (error) {
             console.error('Copy error:', error);
-            this.showError('Failed to copy to clipboard');
+            this.showError(window.i18n?.getMessage('failedToCopy') || 'Failed to copy to clipboard');
         }
     }
 
@@ -499,7 +507,7 @@ class ColorPicker {
         this.saveColorHistory();
         this.renderHistory();
         this.displayDefaultColor(); // Show default white after clearing
-        this.showSuccess('Color history cleared!');
+        this.showSuccess(window.i18n?.getMessage('colorHistoryCleared') || 'Color history cleared!');
     }
 }
 

@@ -1,0 +1,56 @@
+{
+  "colorFormatHex": {
+    "message": "HEX: 十六进制颜色值，常用于 Web 开发"
+  },
+  "colorFormatRgb": {
+    "message": "RGB: 红绿蓝三原色值，范围 0-255"
+  },
+  "colorFormatHsl": {
+    "message": "HSL: 色相、饱和度、明度，更直观的颜色表示"
+  },
+  "copyHex": {
+    "message": "复制 HEX"
+  },
+  "copyRgb": {
+    "message": "复制 RGB"
+  },
+  "copyHsl": {
+    "message": "复制 HSL"
+  },
+  "recentColors": {
+    "message": "最近颜色"
+  },
+  "clearHistory": {
+    "message": "清除所有历史"
+  },
+  "pickColor": {
+    "message": "选择颜色"
+  },
+  "pickingColor": {
+    "message": "取色中..."
+  },
+  "clickAnywhere": {
+    "message": "点击屏幕任意位置选择颜色"
+  },
+  "colorPickedSuccess": {
+    "message": "颜色选择成功！"
+  },
+  "colorPickedCanceled": {
+    "message": "颜色选择已取消"
+  },
+  "colorHistoryCleared": {
+    "message": "颜色历史已清除！"
+  },
+  "valueCopied": {
+    "message": "值已复制到剪贴板！"
+  },
+  "noColorSelected": {
+    "message": "未选择颜色"
+  },
+  "failedToCopy": {
+    "message": "复制到剪贴板失败"
+  },
+  "eyedropperNotSupported": {
+    "message": "此浏览器不支持 EyeDropper API。请使用 Chrome 95+ 或 Edge 95+。"
+  }
+}
