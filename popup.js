@@ -4,9 +4,8 @@ class ColorPicker {
         this.initializeElements();
         this.bindEvents();
         this.checkEyeDropperSupport();
-        this.loadColorHistory();
         this.MAX_HISTORY_ITEMS = 12;
-        this.initializeColorDisplay();
+        this.loadColorHistory();
     }
 
     initializeElements() {
@@ -51,24 +50,6 @@ class ColorPicker {
 
 
 
-    initializeColorDisplay() {
-        // Check for recently picked color
-        chrome.storage.local.get(['lastPickedColor', 'lastPickedTime'], (result) => {
-            const now = Date.now();
-            const oneMinuteAgo = now - (60 * 1000); // 1 minute ago
-            
-            if (result.lastPickedColor && result.lastPickedTime && result.lastPickedTime > oneMinuteAgo) {
-                // Show the recently picked color
-                this.displayColor(result.lastPickedColor);
-                this.showSuccess('Color picked successfully!');
-                // Clear the stored color
-                chrome.storage.local.remove(['lastPickedColor', 'lastPickedTime']);
-            } else {
-                // Display default white color
-                this.displayDefaultColor();
-            }
-        });
-    }
 
 
     displayDefaultColor() {
@@ -333,10 +314,12 @@ class ColorPicker {
             this.colorHistoryData = result.colorHistory || [];
             this.renderHistory();
             
-            // If there's history, display the most recent color
+            // Display the most recent color from history, or default white if no history
             if (this.colorHistoryData.length > 0) {
                 const mostRecentColor = this.colorHistoryData[0];
                 this.displayColorFromHistory(mostRecentColor);
+            } else {
+                this.displayDefaultColor();
             }
         });
     }
