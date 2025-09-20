@@ -108,9 +108,6 @@ class ColorPicker {
                 throw new Error('EyeDropper API not supported');
             }
 
-            // Move popup to edge of screen to minimize interference
-            this.movePopupToEdge();
-
             // Create EyeDropper instance
             const eyeDropper = new EyeDropper();
             
@@ -135,32 +132,12 @@ class ColorPicker {
                 this.showError(this.getErrorMessage(error));
             }
         } finally {
-            // Reset button state and popup position
+            // Reset button state
             this.pickColorBtn.disabled = false;
             this.pickColorBtn.textContent = 'Pick a Color';
-            this.resetPopupPosition();
         }
     }
 
-    movePopupToEdge() {
-        // Move popup to top-right corner to minimize interference
-        document.body.style.position = 'fixed';
-        document.body.style.top = '10px';
-        document.body.style.right = '10px';
-        document.body.style.left = 'auto';
-        document.body.style.transform = 'scale(0.8)';
-        document.body.style.zIndex = '9999';
-    }
-
-    resetPopupPosition() {
-        // Reset popup position
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.right = '';
-        document.body.style.left = '';
-        document.body.style.transform = '';
-        document.body.style.zIndex = '';
-    }
 
     displayColor(colorValue) {
         console.log('Raw color value from EyeDropper:', colorValue);
@@ -206,7 +183,7 @@ class ColorPicker {
         this.colorHex.textContent = normalizedHex;
         this.colorRgb.textContent = rgbValue;
         
-        // Color result is always visible now
+        // Color result is always visible
         
         // Store current color for copying
         this.currentColor = {
