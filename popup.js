@@ -16,6 +16,8 @@ class ColorPicker {
         this.colorRgb = document.getElementById('colorRgb');
         this.copyHexBtn = document.getElementById('copyHexBtn');
         this.copyRgbBtn = document.getElementById('copyRgbBtn');
+        this.colorHsl = document.getElementById('colorHsl');
+        this.copyHslBtn = document.getElementById('copyHslBtn');
         this.errorMessage = document.getElementById('errorMessage');
         this.successMessage = document.getElementById('successMessage');
         this.errorText = document.getElementById('errorText');
@@ -29,6 +31,7 @@ class ColorPicker {
         this.pickColorBtn.addEventListener('click', () => this.pickColor());
         this.copyHexBtn.addEventListener('click', () => this.copyToClipboard('hex'));
         this.copyRgbBtn.addEventListener('click', () => this.copyToClipboard('rgb'));
+        this.copyHslBtn.addEventListener('click', () => this.copyToClipboard('hsl'));
         this.clearHistoryBtn.addEventListener('click', () => this.clearHistory());
         
         // Add click handler for history squares (using event delegation)
@@ -58,10 +61,15 @@ class ColorPicker {
         this.colorHex.textContent = '#FFFFFF';
         this.colorRgb.textContent = 'rgb(255,255,255)';
         
+        // Add HSL value for default color
+        const hslValue = this.hexToHsl('#FFFFFF');
+        this.colorHsl.textContent = hslValue;
+        
         // Store as current color
         this.currentColor = {
             hex: '#FFFFFF',
-            rgb: 'rgb(255,255,255)'
+            rgb: 'rgb(255,255,255)',
+            hsl: hslValue
         };
     }
 
@@ -71,10 +79,15 @@ class ColorPicker {
         this.colorHex.textContent = color.hex;
         this.colorRgb.textContent = color.rgb;
         
+        // Add HSL value for history color (calculate if not present)
+        const hslValue = color.hsl || this.hexToHsl(color.hex);
+        this.colorHsl.textContent = hslValue;
+        
         // Store as current color
         this.currentColor = {
             hex: color.hex,
-            rgb: color.rgb
+            rgb: color.rgb,
+            hsl: hslValue
         };
     }
 
@@ -164,12 +177,19 @@ class ColorPicker {
         this.colorHex.textContent = normalizedHex;
         this.colorRgb.textContent = rgbValue;
         
+        // Add HSL value for more color information
+        const hslValue = this.hexToHsl(normalizedHex);
+        this.colorHsl.textContent = hslValue;
+        
+        // Color analysis removed - HSL L value is more intuitive
+        
         // Color result is always visible
         
         // Store current color for copying
         this.currentColor = {
             hex: normalizedHex,
-            rgb: rgbValue
+            rgb: rgbValue,
+            hsl: hslValue
         };
         
         // Add to history
@@ -241,6 +261,37 @@ class ColorPicker {
         }
     }
 
+    hexToHsl(hex) {
+        // Remove # if present
+        hex = hex.replace('#', '');
+        
+        // Parse hex values
+        const r = parseInt(hex.substring(0, 2), 16) / 255;
+        const g = parseInt(hex.substring(2, 4), 16) / 255;
+        const b = parseInt(hex.substring(4, 6), 16) / 255;
+        
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        let h, s, l = (max + min) / 2;
+        
+        if (max === min) {
+            h = s = 0; // achromatic
+        } else {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                case g: h = (b - r) / d + 2; break;
+                case b: h = (r - g) / d + 4; break;
+            }
+            h /= 6;
+        }
+        
+        return `hsl(${Math.round(h * 360)},${Math.round(s * 100)}%,${Math.round(l * 100)}%)`;
+    }
+
+
+
     async copyToClipboard(format) {
         try {
             if (!this.currentColor) {
@@ -248,7 +299,16 @@ class ColorPicker {
                 return;
             }
 
-            const textToCopy = format === 'hex' ? this.currentColor.hex : this.currentColor.rgb;
+            let textToCopy;
+            if (format === 'hex') {
+                textToCopy = this.currentColor.hex;
+            } else if (format === 'rgb') {
+                textToCopy = this.currentColor.rgb;
+            } else if (format === 'hsl') {
+                textToCopy = this.colorHsl.textContent;
+            } else {
+                textToCopy = this.currentColor.hex;
+            }
             
             await navigator.clipboard.writeText(textToCopy);
             this.showSuccess(`${format.toUpperCase()} value copied to clipboard!`);
