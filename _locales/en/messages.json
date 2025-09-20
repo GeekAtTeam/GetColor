@@ -52,5 +52,17 @@
   },
   "eyedropperNotSupported": {
     "message": "EyeDropper API is not supported in this browser. Please use Chrome 95+ or Edge 95+."
+  },
+  "language": {
+    "message": "Language"
+  },
+  "autoDetect": {
+    "message": "Auto Detect"
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "languageChanged": {
+    "message": "Language changed, please reload the extension"
   }
 }

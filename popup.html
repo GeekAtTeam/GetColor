@@ -14,6 +14,11 @@
             <h1>GetColor</h1>
         </div>
         
+        <!-- Settings Button -->
+        <button id="settingsBtn" class="settings-btn" title="Settings">
+            <span class="btn-icon">⚙️</span>
+        </button>
+        
         <div class="content">
             <button id="pickColorBtn" class="pick-btn">
                 <span class="btn-icon">🎨</span>
@@ -73,6 +78,27 @@
         <div id="successMessage" class="bottom-message success-message hidden">
             <span class="success-icon">✅</span>
             <span id="successText">Copied to clipboard!</span>
+        </div>
+    </div>
+    
+    <!-- Settings Page -->
+    <div id="settingsPage" class="settings-page hidden">
+        <div class="settings-header">
+            <button id="backBtn" class="back-btn" title="Back">
+                <span class="btn-icon">←</span>
+            </button>
+            <h1 data-i18n="settings">Settings</h1>
+        </div>
+        
+        <div class="settings-content">
+            <div class="setting-item">
+                <label data-i18n="language">Language</label>
+                <select id="languageSelect">
+                    <option value="auto" data-i18n="autoDetect">Auto Detect</option>
+                    <option value="en">English</option>
+                    <option value="zh_CN">简体中文</option>
+                </select>
+            </div>
         </div>
     </div>
     

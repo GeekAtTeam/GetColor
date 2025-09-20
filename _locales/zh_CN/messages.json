@@ -52,5 +52,17 @@
   },
   "eyedropperNotSupported": {
     "message": "此浏览器不支持 EyeDropper API。请使用 Chrome 95+ 或 Edge 95+。"
+  },
+  "language": {
+    "message": "语言"
+  },
+  "autoDetect": {
+    "message": "自动检测"
+  },
+  "settings": {
+    "message": "设置"
+  },
+  "languageChanged": {
+    "message": "语言已更改，请重新加载扩展"
   }
 }

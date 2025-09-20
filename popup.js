@@ -26,6 +26,9 @@ class ColorPicker {
         this.colorHistory = document.getElementById('colorHistory');
         this.historyGrid = document.getElementById('historyGrid');
         this.clearHistoryBtn = document.getElementById('clearHistoryBtn');
+        this.settingsBtn = document.getElementById('settingsBtn');
+        this.settingsPage = document.getElementById('settingsPage');
+        this.backBtn = document.getElementById('backBtn');
     }
 
     bindEvents() {
@@ -34,6 +37,8 @@ class ColorPicker {
         this.copyRgbBtn.addEventListener('click', () => this.copyToClipboard('rgb'));
         this.copyHslBtn.addEventListener('click', () => this.copyToClipboard('hsl'));
         this.clearHistoryBtn.addEventListener('click', () => this.clearHistory());
+        this.settingsBtn.addEventListener('click', () => this.showSettings());
+        this.backBtn.addEventListener('click', () => this.hideSettings());
         
         // Add click handler for history squares (using event delegation)
         this.historyGrid.addEventListener('click', (e) => {
@@ -49,7 +54,16 @@ class ColorPicker {
         // Initialize internationalization
         if (window.i18n) {
             window.i18n.initializeTexts();
+            window.i18n.initializeLanguageSelector();
         }
+    }
+
+    showSettings() {
+        this.settingsPage.classList.remove('hidden');
+    }
+
+    hideSettings() {
+        this.settingsPage.classList.add('hidden');
     }
 
     checkEyeDropperSupport() {
