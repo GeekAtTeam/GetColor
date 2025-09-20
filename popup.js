@@ -402,7 +402,7 @@ class ColorPicker {
             
             // Display the color
             this.displayColorFromHistory(color);
-            this.showSuccess('Color loaded from history!');
+            // this.showSuccess('Color loaded from history!');
         }
     }
 
