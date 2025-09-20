@@ -311,8 +311,22 @@ class ColorPicker {
     }
 
     hideMessages() {
-        this.errorMessage.classList.add('hidden');
-        this.successMessage.classList.add('hidden');
+        // Add hiding class to trigger slide down animation
+        if (!this.errorMessage.classList.contains('hidden')) {
+            this.errorMessage.classList.add('hiding');
+            setTimeout(() => {
+                this.errorMessage.classList.add('hidden');
+                this.errorMessage.classList.remove('hiding');
+            }, 300); // Match the slideDown animation duration
+        }
+        
+        if (!this.successMessage.classList.contains('hidden')) {
+            this.successMessage.classList.add('hiding');
+            setTimeout(() => {
+                this.successMessage.classList.add('hidden');
+                this.successMessage.classList.remove('hiding');
+            }, 300); // Match the slideDown animation duration
+        }
     }
 
     getErrorMessage(error) {

@@ -7,17 +7,6 @@
     <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <!-- Fixed position messages -->
-    <div id="errorMessage" class="fixed-message error-message hidden">
-        <span class="error-icon">⚠️</span>
-        <span id="errorText">Error occurred</span>
-    </div>
-    
-    <div id="successMessage" class="fixed-message success-message hidden">
-        <span class="success-icon">✅</span>
-        <span id="successText">Copied to clipboard!</span>
-    </div>
-
     <div class="container">
         <div class="header">
             <img src="icons/getcolor-icon-128px.png" alt="GetColor" class="logo">
@@ -66,6 +55,17 @@
         
         <div class="footer">
             <p>Click anywhere on the screen to pick a color</p>
+        </div>
+        
+        <!-- Messages at bottom of container -->
+        <div id="errorMessage" class="bottom-message error-message hidden">
+            <span class="error-icon">⚠️</span>
+            <span id="errorText">Error occurred</span>
+        </div>
+        
+        <div id="successMessage" class="bottom-message success-message hidden">
+            <span class="success-icon">✅</span>
+            <span id="successText">Copied to clipboard!</span>
         </div>
     </div>
     
