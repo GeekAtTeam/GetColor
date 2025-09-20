@@ -5,7 +5,7 @@ class ColorPicker {
         this.bindEvents();
         this.checkEyeDropperSupport();
         this.loadColorHistory();
-        this.MAX_HISTORY_ITEMS = 10;
+        this.MAX_HISTORY_ITEMS = 12;
         this.initializeColorDisplay();
     }
 
@@ -75,12 +75,12 @@ class ColorPicker {
         // Show default white color
         this.colorSwatch.style.backgroundColor = '#FFFFFF';
         this.colorHex.textContent = '#FFFFFF';
-        this.colorRgb.textContent = 'rgb(255, 255, 255)';
+        this.colorRgb.textContent = 'rgb(255,255,255)';
         
         // Store as current color
         this.currentColor = {
             hex: '#FFFFFF',
-            rgb: 'rgb(255, 255, 255)'
+            rgb: 'rgb(255,255,255)'
         };
     }
 
@@ -208,7 +208,7 @@ class ColorPicker {
         // Validate hex length
         if (hex.length !== 6) {
             console.error('Invalid hex color:', hex);
-            return 'rgb(0, 0, 0)';
+            return 'rgb(0,0,0)';
         }
         
         // Parse hex values
@@ -219,10 +219,10 @@ class ColorPicker {
         // Validate parsed values
         if (isNaN(r) || isNaN(g) || isNaN(b)) {
             console.error('Failed to parse hex color:', hex);
-            return 'rgb(0, 0, 0)';
+            return 'rgb(0,0,0)';
         }
         
-        return `rgb(${r}, ${g}, ${b})`;
+        return `rgb(${r},${g},${b})`;
     }
 
     rgbaToHex(rgbaString) {
@@ -251,7 +251,7 @@ class ColorPicker {
                 return hex.length === 1 ? '0' + hex : hex;
             }).join('').toUpperCase();
             
-            const rgb = `rgb(${r}, ${g}, ${b})`;
+            const rgb = `rgb(${r},${g},${b})`;
             
             return { hex, rgb };
         } catch (error) {

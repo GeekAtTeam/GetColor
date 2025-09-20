@@ -13,9 +13,9 @@ body {
 }
 
 .container {
-    width: 340px;
-    min-height: 400px;
-    padding: 20px;
+    width: 280px;
+    min-height: 320px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
 }
@@ -23,17 +23,17 @@ body {
 /* Header */
 .header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
 .logo {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 8px;
+    width: 42px;
+    height: 42px;
+    margin-bottom: 6px;
 }
 
 .header h1 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #2c3e50;
 }
@@ -43,26 +43,26 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 }
 
 /* Pick Color Button */
 .pick-btn {
     width: 100%;
-    padding: 16px 24px;
+    padding: 12px 20px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    gap: 6px;
+    box-shadow: 0 3px 12px rgba(102, 126, 234, 0.3);
 }
 
 .pick-btn:hover {
@@ -83,24 +83,24 @@ body {
 /* Color Result */
 .color-result {
     background: #f8f9fa;
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 16px;
     border: 1px solid #e9ecef;
 }
 
 .color-preview {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 0px;
 }
 
 .color-swatch {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
     border: 2px solid #dee2e6;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
 }
 
@@ -108,7 +108,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
 }
 
 .color-value-row {
@@ -120,12 +120,12 @@ body {
 
 .color-value {
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #495057;
     background: white;
-    padding: 2px 8px;
-    border-radius: 6px;
+    padding: 2px 6px;
+    border-radius: 4px;
     border: 1px solid #dee2e6;
     flex: 1;
     min-width: 0; /* 允许文本收缩 */
@@ -138,17 +138,17 @@ body {
     background: #f8f9fa;
     color: #6c757d;
     border: 1px solid #dee2e6;
-    border-radius: 4px;
-    padding: 4px;
+    border-radius: 3px;
+    padding: 3px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 26px;
-    height: 26px;
-    font-size: 11px;
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
     margin-left: 2px;
 }
 
@@ -208,21 +208,21 @@ body {
   /* Color History */
   .color-history {
       background: #f8f9fa;
-      border-radius: 12px;
-      padding: 16px;
+      border-radius: 10px;
+      padding: 12px;
     border: 1px solid #e9ecef;
-    margin-top: 4px;
+    margin-top: 3px;
 }
 
 .history-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .history-header h3 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #495057;
     margin: 0;
@@ -250,26 +250,26 @@ body {
 
 .history-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
 }
 
 .history-square {
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 8px;
-    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    min-height: 40px;
-    min-width: 40px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    min-height: 24px;
+    min-width: 24px;
 }
 
 .history-square:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-color: #adb5bd;
 }
 
@@ -284,7 +284,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 6px;
+    border-radius: 3px;
     background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -305,12 +305,12 @@ body {
 
 /* Footer */
 .footer {
-    margin-top: 16px;
+    margin-top: 12px;
     text-align: center;
 }
 
 .footer p {
-    font-size: 12px;
+    font-size: 11px;
     color: #6c757d;
 }
 
