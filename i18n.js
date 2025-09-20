@@ -51,13 +51,18 @@ class I18n {
                 languageChanged: "语言切换成功！"
             }
         };
-        this.currentLocale = this.getCurrentLocale();
+        this.currentLocale = 'auto'; // Default to auto-detect
         this.supportedLocales = ['en', 'zh_CN'];
     }
 
     // Get current locale
     getCurrentLocale() {
-        return chrome.i18n.getUILanguage() || 'en';
+        const browserLocale = chrome.i18n.getUILanguage() || 'en';
+        // Convert browser locale to our supported format
+        if (browserLocale.startsWith('zh')) {
+            return 'zh_CN';
+        }
+        return 'en';
     }
 
     // Get message by key
@@ -175,13 +180,17 @@ class I18n {
         if (!languageSelect) return;
 
         const preference = await this.loadLanguagePreference();
-        this.currentLocale = preference === 'auto' ? this.getCurrentLocale() : preference;
+        this.currentLocale = preference; // Keep the preference as is (including 'auto')
         languageSelect.value = preference;
+
 
         languageSelect.addEventListener('change', async (e) => {
             const newLanguage = e.target.value;
             await this.changeLanguage(newLanguage);
         });
+        
+        // Initialize texts after setting the correct locale
+        this.initializeTexts();
     }
 }
 

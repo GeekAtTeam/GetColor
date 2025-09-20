@@ -50,11 +50,10 @@ class ColorPicker {
         });
     }
 
-    initializeI18n() {
+    async initializeI18n() {
         // Initialize internationalization
         if (window.i18n) {
-            window.i18n.initializeTexts();
-            window.i18n.initializeLanguageSelector();
+            await window.i18n.initializeLanguageSelector();
         }
     }
 
