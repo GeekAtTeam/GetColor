@@ -15,9 +15,7 @@ This data is stored locally using Chrome's storage API and is not shared with an
 ## Permissions
 
 The extension requests the following permissions:
-- `activeTab`: To access the current tab for color picking
 - `storage`: To save color history and settings locally
-- `notifications`: To show success/error messages
 
 ## Data Usage
 

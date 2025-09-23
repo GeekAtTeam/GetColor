@@ -7,7 +7,7 @@ Supports Chrome, Edge and other Chromium-based browsers.
 
 ## ✨ Features
 
-- 🎨 **Pick a pixel color** — Click anywhere on the screen to get its HEX/RGB value  
+- 🎨 **Pick a pixel color** — Click anywhere on the screen to get its HEX/RGB/HSL value  
 - 📋 **Copy to clipboard** — One-click copy for easy use in design or code  
 - 🖌️ **Simple interface** — Lightweight and user-friendly popup UI  
 
