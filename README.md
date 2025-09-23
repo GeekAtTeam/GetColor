@@ -1,86 +1,65 @@
-# GetColor
-A simple and powerful browser extension for picking colors from the screen.
+# GetColor - Browser Color Picker Extension
 
-Supports Chrome, Edge and other Chromium-based browsers.  
+[中文说明](./README_zh.md) | [English](./README.md)
 
-![](./icons/getcolor-icon-128px.png)
+GetColor is a simple and useful browser extension for picking colors from anywhere on your screen.
 
-## ✨ Features
+![](./images/getcolor-main-ui-v100-03.png)
 
-- 🎨 **Pick a pixel color** — Click anywhere on the screen to get its HEX/RGB/HSL value  
-- 📋 **Copy to clipboard** — One-click copy for easy use in design or code  
-- 🖌️ **Simple interface** — Lightweight and user-friendly popup UI  
-
-> 🚧 More features are on the way:
-> - Calculate average color of a selected area
-> - Analyze color palettes in a region
-> - Export palettes for design tools
-
-
-
-## 🚀 Installation
-
-### From source
-1. Clone this repo
-
-   ```bash
-   git clone https://github.com/GeekAtTeam/GetColor.git
-   cd GetColor
-   ```
-
-2. Open your browser and go to:
-
-   - Chrome: `chrome://extensions/`
-   - Edge: `edge://extensions/`
-
-3. Enable **Developer mode**
-
-4. Click **Load unpacked** and select this project folder
-
-The extension icon will now appear in your toolbar 🎉
-
-
-
-## 🛠️ Development
-
-- The extension is built with **Manifest V3**
-- Uses the EyeDropper API for color picking
-- Popup UI is built with plain HTML/CSS/JS (easy to extend)
-
-### File structure
+## Project Structure
 
 ```bash
-getcolor/
-│── manifest.json      # Extension config
-│── background.js      # Background service worker
-│── content.js         # (Future) Injected scripts
-│── popup.html         # Popup UI
-│── popup.js
-│── icons/             # Extension icons
+GetColor/
+├── source/                 # Extension source code
+│   ├── manifest.json       # Extension configuration
+│   ├── popup.html          # Popup interface
+│   ├── popup.css           # Styles
+│   ├── popup.js            # Popup logic
+│   ├── background.js       # Background script
+│   ├── i18n.js             # Internationalization
+│   ├── icons/              # Icon files
+│   └── _locales/           # Multi-language files
+├── images/                 # Store images
+├── build.sh                # Build script
+└── README.md               # Project description
 ```
 
+## Quick Start
 
+### Development Mode
+1. Open Chrome Extensions page (`chrome://extensions/`)
+2. Enable "Developer mode"
+3. Click "Load unpacked extension"
+4. Select the `source` directory
 
-## 📦 Build & Publish
+### Build & Release
+```bash
+# Using build script (recommended)
+./build.sh
 
-When ready to release:
+# Or manual build
+cd source && zip -r ../GetColor-v1.0.0.zip .
+```
 
-1. Zip the extension folder
-2. Submit to:
-   - [Chrome Web Store](https://chrome.google.com/webstore/devconsole)
-   - [Edge Add-ons](https://partner.microsoft.com/dashboard/microsoftedge)
+## Features
 
+- 🎨 **Color Picking**: Extract colors from anywhere on your screen using EyeDropper API
+- 🔄 **Format Conversion**: Support HEX, RGB, HSL color formats
+- 📚 **Color History**: Save recently picked colors for quick access
+- 🌍 **Multi-language**: Support Chinese and English interfaces
+- 💾 **Local Storage**: All data stored locally, protecting privacy
 
+## Tech Stack
 
-## 🤝 Contributing
+- **Manifest V3**: Latest browser extension specification
+- **JavaScript ES6+**: Modern JavaScript syntax
+- **Chrome Storage API**: Local data storage
+- **EyeDropper API**: Color picking functionality
 
-Contributions are welcome!
+## Permissions
 
-- Report issues via [GitHub Issues](https://github.com/GeekAtTeam/GetColor/issues)
-- Submit PRs with improvements or new features
+- `storage`: For saving color history and language settings
 
+## License
 
-
-## 📄 License
-
-This project is licensed under the [MIT License](./LICENSE).
+MIT License - See [LICENSE](./LICENSE) file for details
