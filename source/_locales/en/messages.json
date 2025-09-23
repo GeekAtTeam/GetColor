@@ -1,4 +1,10 @@
 {
+  "appName": {
+    "message": "GetColor"
+  },
+  "appDescription": {
+    "message": "Simple color picker/eyedropper tool - extract colors and convert to HEX/RGB/HSL formats"
+  },
   "colorFormatHex": {
     "message": "HEX: Hexadecimal color value, commonly used in web development"
   },

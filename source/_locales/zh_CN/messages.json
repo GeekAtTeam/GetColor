@@ -1,4 +1,10 @@
 {
+  "appName": {
+    "message": "GetColor"
+  },
+  "appDescription": {
+    "message": "简单好用的屏幕取色器/拾色器，一键提取颜色并转换为 HEX/RGB/HSL 格式"
+  },
   "colorFormatHex": {
     "message": "HEX: 十六进制颜色值，常用于 Web 开发"
   },
